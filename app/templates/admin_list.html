@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Certificados emitidos - Certificados{% endblock %}
+
+{% block content %}
+  <h2>Certificados emitidos</h2>
+  <p>Lista de certificados gerados pelo sistema. Utilize o código de validação para compartilhar com os alunos.</p>
+
+  {% if certificates %}
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Aluno</th>
+            <th>Curso</th>
+            <th>Conclusão</th>
+            <th>Carga horária</th>
+            <th>Código de validação</th>
+            <th>Emitido em</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for certificate in certificates %}
+            <tr>
+              <td>{{ certificate.student_name }}</td>
+              <td>{{ certificate.course_name }}</td>
+              <td>{{ certificate.completion_date.strftime('%d/%m/%Y') }}</td>
+              <td>{{ certificate.workload_hours }} h</td>
+              <td>
+                <a href="{{ url_for('main.validate_certificate', code=certificate.validation_code) }}" target="_blank" rel="noopener">
+                  <code>{{ certificate.validation_code }}</code>
+                </a>
+              </td>
+              <td>{{ certificate.created_at.strftime('%d/%m/%Y %H:%M') }}</td>
+              <td>
+                <a href="{{ url_for('main.admin_certificate_detail', certificate_id=certificate.id) }}">Detalhes</a>
+                |
+                <a href="{{ url_for('main.download_certificate', code=certificate.validation_code) }}" target="_blank">Download</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p>Nenhum certificado foi emitido até o momento.</p>
+  {% endif %}
+{% endblock %}
