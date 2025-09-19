@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Emitir certificado - Certificados{% endblock %}
+
+{% block content %}
+  <h2>Emitir novo certificado</h2>
+  <p>Preencha os dados do aluno e do curso. O certificado será gerado automaticamente com um código único de validação.</p>
+
+  <form method="post" class="card form-grid">
+    <div class="form-field">
+      <label for="student_name">Nome completo do aluno *</label>
+      <input type="text" id="student_name" name="student_name" required value="{{ form_data.get('student_name', '') }}">
+    </div>
+
+    <div class="form-field">
+      <label for="cpf">CPF *</label>
+      <input type="text" id="cpf" name="cpf" required value="{{ form_data.get('cpf', '') }}">
+    </div>
+
+    <div class="form-field">
+      <label for="course_name">Curso *</label>
+      <input type="text" id="course_name" name="course_name" required value="{{ form_data.get('course_name', '') }}">
+    </div>
+
+    <div class="form-field">
+      <label for="workload_hours">Carga horária (em horas) *</label>
+      <input type="number" id="workload_hours" name="workload_hours" min="1" required value="{{ form_data.get('workload_hours', '') }}">
+    </div>
+
+    <div class="form-field">
+      <label for="completion_date">Data de conclusão *</label>
+      <input type="date" id="completion_date" name="completion_date" required value="{{ form_data.get('completion_date', '') }}">
+    </div>
+
+    <div class="form-field">
+      <label for="issuer_name">Responsável pela emissão</label>
+      <input type="text" id="issuer_name" name="issuer_name" value="{{ form_data.get('issuer_name', '') }}">
+    </div>
+
+    <div class="form-field form-field-full">
+      <label for="extra_info">Observações adicionais</label>
+      <textarea id="extra_info" name="extra_info" rows="4">{{ form_data.get('extra_info', '') }}</textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit">Emitir certificado</button>
+    </div>
+  </form>
+{% endblock %}

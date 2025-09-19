@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Validar certificado - Certificados{% endblock %}
+
+{% block content %}
+  <h2>Validação de certificados</h2>
+  <p>Informe o código de validação presente no certificado para consultar os dados do aluno e do curso.</p>
+
+  <form method="post" class="card validation-form">
+    <label for="validation_code">Código de validação</label>
+    <div class="validation-input">
+      <input type="text" id="validation_code" name="validation_code" placeholder="Ex.: ABC123XYZ" value="{{ code }}" required>
+      <button type="submit">Validar</button>
+    </div>
+  </form>
+
+  {% if error %}
+    <div class="card feedback error">
+      <p>{{ error }}</p>
+    </div>
+  {% elif certificate %}
+    <div class="card feedback success">
+      <h3>Certificado válido</h3>
+      <p>O certificado abaixo foi encontrado com o código <code>{{ certificate.validation_code }}</code>.</p>
+      <ul class="certificate-data">
+        <li><strong>Aluno:</strong> {{ certificate.student_name }}</li>
+        <li><strong>CPF:</strong> {{ certificate.cpf }}</li>
+        <li><strong>Curso:</strong> {{ certificate.course_name }}</li>
+        <li><strong>Carga horária:</strong> {{ certificate.workload_hours }} horas</li>
+        <li><strong>Data de conclusão:</strong> {{ certificate.completion_date.strftime('%d/%m/%Y') }}</li>
+        {% if certificate.issuer_name %}
+          <li><strong>Responsável pela emissão:</strong> {{ certificate.issuer_name }}</li>
+        {% endif %}
+        {% if certificate.extra_info %}
+          <li><strong>Observações:</strong> {{ certificate.extra_info }}</li>
+        {% endif %}
+      </ul>
+      <a class="button" href="{{ url_for('main.download_certificate', code=certificate.validation_code) }}" target="_blank">Baixar certificado</a>
+    </div>
+  {% endif %}
+{% endblock %}

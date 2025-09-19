@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Certificados{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container">
+        <h1 class="logo"><a href="{{ url_for('main.validate_certificate') }}">Certificados CRH</a></h1>
+        <nav class="menu">
+          <a href="{{ url_for('main.validate_certificate') }}">Validação</a>
+          <a href="{{ url_for('main.admin_issue_certificate') }}">Emitir certificado</a>
+          <a href="{{ url_for('main.admin_list_certificates') }}">Certificados emitidos</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <ul class="flash-messages">
+            {% for category, message in messages %}
+              <li class="flash-{{ category }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>Sistema de emissão e validação de certificados.</p>
+      </div>
+    </footer>
+  </body>
+</html>

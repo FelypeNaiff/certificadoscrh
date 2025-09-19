@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalhes do certificado - Certificados{% endblock %}
+
+{% block content %}
+  <h2>Certificado emitido</h2>
+  <p>Compartilhe o código de validação com o aluno para que ele possa confirmar a autenticidade do documento.</p>
+
+  <div class="card detail-card">
+    <dl>
+      <div>
+        <dt>Aluno</dt>
+        <dd>{{ certificate.student_name }}</dd>
+      </div>
+      <div>
+        <dt>CPF</dt>
+        <dd>{{ certificate.cpf }}</dd>
+      </div>
+      <div>
+        <dt>Curso</dt>
+        <dd>{{ certificate.course_name }}</dd>
+      </div>
+      <div>
+        <dt>Carga horária</dt>
+        <dd>{{ certificate.workload_hours }} horas</dd>
+      </div>
+      <div>
+        <dt>Data de conclusão</dt>
+        <dd>{{ certificate.completion_date.strftime('%d/%m/%Y') }}</dd>
+      </div>
+      {% if certificate.issuer_name %}
+        <div>
+          <dt>Responsável pela emissão</dt>
+          <dd>{{ certificate.issuer_name }}</dd>
+        </div>
+      {% endif %}
+      {% if certificate.extra_info %}
+        <div>
+          <dt>Observações</dt>
+          <dd>{{ certificate.extra_info }}</dd>
+        </div>
+      {% endif %}
+      <div>
+        <dt>Código de validação</dt>
+        <dd><code class="validation-code">{{ certificate.validation_code }}</code></dd>
+      </div>
+      <div>
+        <dt>Link para validação online</dt>
+        <dd><a href="{{ validation_link }}" target="_blank" rel="noopener">{{ validation_link }}</a></dd>
+      </div>
+      <div>
+        <dt>Emitido em</dt>
+        <dd>{{ certificate.created_at.strftime('%d/%m/%Y %H:%M') }}</dd>
+      </div>
+    </dl>
+  </div>
+
+  <div class="form-actions">
+    <a class="button" href="{{ url_for('main.download_certificate', code=certificate.validation_code) }}" target="_blank">Baixar PDF</a>
+    <a class="button-secondary" href="{{ url_for('main.admin_list_certificates') }}">Voltar para a lista</a>
+  </div>
+{% endblock %}

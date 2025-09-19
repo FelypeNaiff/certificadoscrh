@@ -1,0 +1,297 @@
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --bg: #f3f4f6;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --success: #047857;
+  --error: #b91c1c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.topbar {
+  background: var(--primary);
+  color: #fff;
+  padding: 1rem 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.logo a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.menu {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.menu a {
+  color: #e0e7ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+main.container {
+  padding: 2rem 1.5rem 3rem;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-field-full {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.form-field input,
+.form-field textarea,
+.validation-form input {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.form-field textarea {
+  min-height: 120px;
+}
+
+.validation-form label {
+  display: block;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.validation-input {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.validation-input input {
+  flex: 1 1 280px;
+}
+
+.validation-input button,
+button,
+.button,
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+button,
+.button {
+  background: var(--primary);
+  color: #fff;
+}
+
+button:hover,
+.button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.button-secondary {
+  background: #e5e7eb;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.button-secondary:hover {
+  background: #d1d5db;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.flash-messages {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.flash-messages li {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.flash-success {
+  background: rgba(4, 120, 87, 0.12);
+  color: var(--success);
+}
+
+.flash-error {
+  background: rgba(185, 28, 28, 0.12);
+  color: var(--error);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+table th,
+table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+table th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+table code {
+  background: #eef2ff;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.detail-card dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem 1.5rem;
+  margin: 0;
+}
+
+.detail-card dt {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.detail-card dd {
+  margin: 0.25rem 0 0;
+}
+
+.feedback {
+  margin-top: 1.5rem;
+  border-left: 4px solid transparent;
+}
+
+.feedback.success {
+  border-left-color: var(--success);
+}
+
+.feedback.error {
+  border-left-color: var(--error);
+}
+
+.feedback h3 {
+  margin-top: 0;
+}
+
+.certificate-data {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 1.5rem;
+}
+
+.certificate-data li {
+  margin-bottom: 0.5rem;
+}
+
+.validation-code {
+  font-size: 1.1rem;
+  background: #eef2ff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+}
+
+.footer {
+  background: #111827;
+  color: #9ca3af;
+  padding: 1.5rem 0;
+}
+
+.footer p {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .validation-input {
+    flex-direction: column;
+  }
+
+  .menu {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
